@@ -1,15 +1,10 @@
 'use client';
 
-import { useFilters } from '@/features/Filters/lib/useFilters';
-import { Button } from '@/shared/ui/Button';
-import { Select } from '@/shared/ui/Select';
 import { cn } from '@/shared/lib/cn';
 import { FC, HTMLAttributes } from 'react';
 import { FilterBar } from '../FilterBar/FilterBar';
 
 export const Header: FC<HTMLAttributes<HTMLDivElement>> = ({ children, className }) => {
-  const filters = useFilters();
-
   return (
     <header
       className={cn(
@@ -18,7 +13,6 @@ export const Header: FC<HTMLAttributes<HTMLDivElement>> = ({ children, className
         className
       )}
     >
-      <FilterBar />
       {children}
     </header>
   );

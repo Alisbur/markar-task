@@ -18,7 +18,6 @@ const paginationSlice = createSlice({
   reducers: {
     setPagination: (state, action: PayloadAction<TPaginationState | undefined>) => {
       if (action.payload) {
-        console.log('payload', action.payload);
         return { ...state, ...action.payload };
       } else {
         state = initialState;

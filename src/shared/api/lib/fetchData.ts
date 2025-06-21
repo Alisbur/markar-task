@@ -1,8 +1,15 @@
-import { baseUrl } from '@/shared/config/routes';
+import { baseUrl, proxyUrl } from '@/shared/config/routes';
 import { normalizeResponseModel } from './normalize';
 
+const ERROR_MESSAGES = {
+  WRONG_DATA_STRUCTURE: 'Ошибка структуры данных',
+  NETWORK_ERROR: 'Ошибка сети',
+  DATA_LOADING_ERROR: 'Ошибка загрузки данных',
+};
+
 export const fetchData = async (
-  params: Record<string, string | string[] | undefined>
+  params: Record<string, string | string[] | undefined>,
+  proxy: boolean
 ): Promise<TResponseModel> => {
   try {
     const urlParams = new URLSearchParams();
@@ -15,7 +22,9 @@ export const fetchData = async (
       }
     }
 
-    const url = `${baseUrl}?${urlParams.toString()}`;
+    const url = proxy
+      ? `${proxyUrl}?${urlParams.toString()}`
+      : `${baseUrl}?${urlParams.toString()}`;
 
     const response = await fetch(url);
 
@@ -28,7 +37,7 @@ export const fetchData = async (
       }
 
       throw {
-        message: `Ошибка получения данных: ${response.status}`,
+        message: `${ERROR_MESSAGES.DATA_LOADING_ERROR}: ${response.status}`,
         status: response.status,
         details: errorDetails,
       } as TErrorModel;
@@ -39,7 +48,7 @@ export const fetchData = async (
 
     if (!normalizedData.data || !normalizedData.meta) {
       throw {
-        message: 'Ошибка структур данных',
+        message: ERROR_MESSAGES.WRONG_DATA_STRUCTURE,
         details: normalizedData,
       } as TErrorModel;
     }
@@ -51,13 +60,13 @@ export const fetchData = async (
     };
 
     if (error instanceof TypeError) {
-      errorToThrow.message = 'Ошибка сети';
+      errorToThrow.message = ERROR_MESSAGES.NETWORK_ERROR;
       errorToThrow.details = error.message;
     } else if (typeof error === 'object' && error !== null) {
       Object.assign(errorToThrow, error);
     }
 
-    console.error('Ошибка загрузки данных:', errorToThrow);
+    console.error(`${ERROR_MESSAGES.DATA_LOADING_ERROR}:`, errorToThrow);
     throw errorToThrow;
   }
 };

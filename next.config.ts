@@ -4,8 +4,8 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return [
       {
-        source: '/api/:path*',
-        destination: 'http://localhost:3001/api/:path*', // Проксируем все /api запросы на сервер
+        source: `${process.env.NEXT_PUBLIC_PROXY_BASE_URL}/:path*`,
+        destination: `${process.env.NEXT_PUBLIC_API_BASE_URL}/:path*`,
       },
     ];
   },

@@ -11,7 +11,6 @@ type IPropsCarCard = {
   isLiked?: boolean;
   onLikeClick?: (e: MouseEvent, id: number) => void;
   onCardClick: (id: number) => void;
-  // actionSlot
 } & HTMLAttributes<HTMLDivElement>;
 
 export const CarCard: FC<IPropsCarCard> = ({

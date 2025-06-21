@@ -1,4 +1,2 @@
-export const baseUrl = 'https://testing-api.ru-rating.ru/cars';
-
-export const baseUrlTestParams =
-  'https://testing-api.ru-rating.ru/cars?_limit=12&_page=1&_sort=price&_order=asc';
+export const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+export const proxyUrl = process.env.NEXT_PUBLIC_PROXY_BASE_URL;

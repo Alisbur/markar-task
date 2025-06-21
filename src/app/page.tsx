@@ -1,6 +1,6 @@
 import { HydrationBoundary, dehydrate } from '@tanstack/react-query';
 import { QueryClient } from '@tanstack/react-query';
-import HomePage from '@/views/Home/Page';
+import HomePage from '@/views';
 import { Suspense } from 'react';
 import { fetchData } from '@/shared/api/lib/fetchData';
 
@@ -26,7 +26,7 @@ export default async function Home({ searchParams }: { searchParams: Record<stri
   if (Object.keys(awaitedSearchParams).length > 0) {
     await queryClient.prefetchQuery({
       queryKey: ['cars', awaitedSearchParams],
-      queryFn: () => fetchData(awaitedSearchParams),
+      queryFn: () => fetchData(awaitedSearchParams, false),
     });
   }
 

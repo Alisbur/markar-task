@@ -9,6 +9,8 @@ import { useRouter } from 'next/navigation';
 import { usePathname } from 'next/navigation';
 import { PaginationBar } from '@/widgets/PaginationBar';
 import { fetchData } from '@/shared/api/lib/fetchData';
+import { Header } from '@/widgets/Header';
+import { FilterBar } from '@/widgets/FilterBar';
 
 export default function HomePage({
   searchParams,
@@ -23,14 +25,13 @@ export default function HomePage({
 
   const { data, isLoading, error } = useQuery({
     queryKey: ['cars', searchParams],
-    queryFn: () => fetchData(searchParams),
+    queryFn: () => fetchData(searchParams, true),
     staleTime: 60 * 1000,
   });
 
   useEffect(() => {
     if (data && !isLoading && !error) {
       setCarsData(data.data);
-      console.log(data.meta);
       setPagination(data.meta);
     }
     if (error) {
@@ -39,7 +40,6 @@ export default function HomePage({
   }, [data, isLoading, error]);
 
   useEffect(() => {
-    console.log('NEW SS UPDATE', newSearchString?.toString());
     if (newSearchString !== '') router.push(pathname + '?' + newSearchString, { scroll: false });
   }, [newSearchString]);
 
@@ -51,21 +51,26 @@ export default function HomePage({
   if (error) return <div>Error: {error.message}</div>;
 
   return (
-    <main className={`w-full flex flex-col gap-[60px]`}>
-      <div
-        className={`w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-[30px] gap-y-[20px]`}
-      >
-        {carsData.length && !isLoading
-          ? carsData.map((car) => (
-              <CarCard key={car.id} carData={car} onCardClick={handleCardClick} />
-            ))
-          : new Array(12).fill('').map((_, i) => <CarCardSkeleton key={i} />)}
-      </div>
-      <div
-        className={`flex items-center justify-center w-full h-[100px] border border-red mb-[100px]`}
-      >
-        <PaginationBar />
-      </div>
-    </main>
+    <>
+      <Header>
+        <FilterBar />
+      </Header>
+      <main className={`w-full flex flex-col gap-[60px]`}>
+        <div
+          className={`w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-[30px] gap-y-[20px]`}
+        >
+          {carsData.length && !isLoading
+            ? carsData.map((car) => (
+                <CarCard key={car.id} carData={car} onCardClick={handleCardClick} />
+              ))
+            : new Array(12).fill('').map((_, i) => <CarCardSkeleton key={i} />)}
+        </div>
+        <div
+          className={`flex items-center justify-center w-full h-[100px] border border-red mb-[100px]`}
+        >
+          <PaginationBar />
+        </div>
+      </main>
+    </>
   );
 }

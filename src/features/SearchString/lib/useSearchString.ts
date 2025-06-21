@@ -22,11 +22,6 @@ export const useSearchString = () => {
       pagination.goToPage(parseInt(page));
     if (limit && strIsNum(limit) && parseInt(limit) !== pagination.itemsPerPage)
       pagination.setItemsPerPage(parseInt(limit));
-
-    console.log('FILTER', filter);
-    console.log('SORT', sort);
-    console.log('PAGE', pagination.currentPage);
-    console.log('LIMIT', pagination.itemsPerPage);
   }, []);
 
   useEffect(() => {
@@ -38,7 +33,6 @@ export const useSearchString = () => {
       params.set('_order', filters.sort);
     }
     setNewSearchParams(params);
-    console.log('PARAMS', params.toString());
   }, [pagination.currentPage, pagination.itemsPerPage, filters.filter, filters.sort]);
 
   return { newSearchString: newSearchParams?.toString() };

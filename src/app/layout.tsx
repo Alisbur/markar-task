@@ -20,10 +20,7 @@ export default function RootLayout({
       <body>
         <Providers>
           <LayoutMain>
-            <BoxEars>
-              <Header />
-              {children}
-            </BoxEars>
+            <BoxEars>{children}</BoxEars>
           </LayoutMain>
         </Providers>
       </body>

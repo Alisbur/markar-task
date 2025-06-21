@@ -61,7 +61,7 @@ export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   asChild?: boolean;
-  isLoading?: boolean; // Новый пропс для состояния загрузки
+  isLoading?: boolean;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
@@ -92,7 +92,6 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         disabled={isLoading || props.disabled}
         {...props}
       >
-        {/*<span className="mx-auto">{children}</span>*/}
         {children}
         {isLoading && (
           <span className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center">
