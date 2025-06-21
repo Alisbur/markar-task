@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from '@/app/store';
-import { resetFilter, setFilter } from './filters-slice';
+import { resetFilter, setFilter } from '../model/filters-slice';
 
 export const useFilters = () => {
   const { filter, sort } = useAppSelector((store) => store.filters);
@@ -9,7 +9,6 @@ export const useFilters = () => {
     filter,
     sort,
     setFilter: (filter: { filter: TFilter | null; sort: TSort }) => dispatch(setFilter(filter)),
-    // resetFilters: () => dispatch(resetFilters()),
-    resetFilter: (filter: TFilter) => dispatch(resetFilter()),
+    resetFilter: () => dispatch(resetFilter()),
   };
 };

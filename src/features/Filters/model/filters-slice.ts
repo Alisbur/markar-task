@@ -12,9 +12,6 @@ const filtersSlice = createSlice({
     resetFilter: (state) => {
       state = initialState;
     },
-    // resetFilter: (state, action: PayloadAction<TFilter>) => {
-    //   return { ...state, [action.payload]: null };
-    // },
     setFilter: (state, action: PayloadAction<{ filter: TFilter | null; sort: TSort }>) => {
       return { ...state, ...action.payload };
     },

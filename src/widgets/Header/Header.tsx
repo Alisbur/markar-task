@@ -1,6 +1,6 @@
 'use client';
 
-import { useFilters } from '@/features/Filters/model/useFilters';
+import { useFilters } from '@/features/Filters/lib/useFilters';
 import { Button } from '@/shared/ui/Button';
 import { Select } from '@/shared/ui/Select';
 import { cn } from '@/shared/lib/cn';

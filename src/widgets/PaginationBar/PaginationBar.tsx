@@ -2,7 +2,7 @@ import { PaginationComponent } from '@/entities/PaginationComponent/PaginationCo
 import { usePagination } from '@/features/Pagination';
 import { cn } from '@/shared/lib/cn';
 import { Select } from '@/shared/ui/Select';
-import { FC, Fragment, HTMLAttributes } from 'react';
+import { FC, HTMLAttributes } from 'react';
 import { PAGINATION_LIMIT_OPTIONS } from './config/config';
 
 export const PaginationBar: FC<HTMLAttributes<HTMLDivElement>> = ({ className, ...props }) => {

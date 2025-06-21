@@ -1,13 +1,5 @@
 'use client';
-import {
-  FC,
-  HTMLAttributes,
-  ReactNode,
-  SyntheticEvent,
-  useCallback,
-  useState,
-  type MouseEvent,
-} from 'react';
+import { FC, HTMLAttributes, useState, type MouseEvent } from 'react';
 import Image from 'next/image';
 import { cn } from '@/shared/lib/utils';
 import { HeartIcon } from 'lucide-react';
@@ -35,7 +27,7 @@ export const CarCard: FC<IPropsCarCard> = ({
     <article
       className={cn(
         `w-full flex flex-col gap-4 pb-2 border border-secondary shadow-md overflow-hidden
-        rounded-sm relative cursor-pointer hover:opacity-80 duration-300 transition-all hover:-translate-y-2`,
+        rounded-sm relative cursor-pointer duration-300 transition-all hover:scale-[1.05]`,
         className
       )}
       role="button"

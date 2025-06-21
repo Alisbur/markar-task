@@ -8,7 +8,7 @@ import {
   goToPrevPage,
   setPagination,
   setItemsPerPage,
-} from './pagination-slice';
+} from '../model/pagination-slice';
 
 export const usePagination = () => {
   const dispatch = useAppDispatch();

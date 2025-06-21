@@ -1,9 +1,9 @@
 import { Button } from '@/shared/ui/Button';
 import { Select } from '@/shared/ui/Select';
 import { cn } from '@/shared/lib/cn';
-import { FC, ReactNode, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { FILTER_OPTIONS } from './config/config';
-import { useFilters } from '@/features/Filters/model/useFilters';
+import { useFilters } from '@/features/Filters/lib/useFilters';
 
 type TFilterBarProps = {
   className?: string;

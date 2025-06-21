@@ -1,6 +1,6 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import paginationReducer from '@/features/Pagination';
-import filtersReducer from '@/features/Filters/model/filters-slice';
+import filtersReducer from '@/features/Filters';
 
 const rootReducer = combineReducers({
   pagination: paginationReducer,

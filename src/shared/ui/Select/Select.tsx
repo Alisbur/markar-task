@@ -10,7 +10,6 @@ interface IPropsSelect {
   className?: string;
   items: { label: string; value: string | number | null }[];
   selectedItem: { label: string; value: string | number | null } | null;
-  // setSelectedItem: (v: unknown) => void;
   setSelectedItem: (paramName: string | null, value: string | number | null) => void;
   disabled?: boolean;
   placeholder: string;
