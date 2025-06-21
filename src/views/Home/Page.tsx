@@ -12,6 +12,9 @@ import { fetchData } from '@/shared/api/lib/fetchData';
 import { Header } from '@/widgets/Header';
 import { FilterBar } from '@/widgets/FilterBar';
 
+const INIT_PAGINATION_LIMIT = 12;
+const INIT_PAGINATION_PAGE = 1;
+
 export default function HomePage({
   searchParams,
 }: {
@@ -22,10 +25,19 @@ export default function HomePage({
   const { newSearchString } = useSearchString();
   const router = useRouter();
   const pathname = usePathname();
+  const searchPrms = searchParams;
+
+  if (!searchPrms['_limit']) {
+    searchPrms['_limit'] = INIT_PAGINATION_LIMIT.toString();
+  }
+
+  if (!searchPrms['_page']) {
+    searchPrms['_page'] = INIT_PAGINATION_PAGE.toString();
+  }
 
   const { data, isLoading, error } = useQuery({
-    queryKey: ['cars', searchParams],
-    queryFn: () => fetchData(searchParams, true),
+    queryKey: ['cars', searchPrms],
+    queryFn: () => fetchData(searchPrms, true),
     staleTime: 60 * 1000,
   });
 
