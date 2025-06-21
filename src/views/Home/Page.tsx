@@ -25,6 +25,7 @@ export default function HomePage({
   const { newSearchString } = useSearchString();
   const router = useRouter();
   const pathname = usePathname();
+
   const searchPrms = searchParams;
 
   if (!searchPrms['_limit']) {
@@ -35,7 +36,7 @@ export default function HomePage({
     searchPrms['_page'] = INIT_PAGINATION_PAGE.toString();
   }
 
-  const { data, isLoading, error } = useQuery({
+  const { data, isLoading, error, isFetching } = useQuery({
     queryKey: ['cars', searchPrms],
     queryFn: () => fetchData(searchPrms, true),
     staleTime: 60 * 1000,
@@ -63,7 +64,6 @@ export default function HomePage({
     console.log('Card', id, 'details is cLicked');
   }, []);
 
-  if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
 
   return (
