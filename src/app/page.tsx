@@ -7,7 +7,11 @@ import { fetchData } from '@/shared/api/lib/fetchData';
 const INIT_PAGINATION_LIMIT = 12;
 const INIT_PAGINATION_PAGE = 1;
 
-export default async function Home({ searchParams }: { searchParams: Record<string, string> }) {
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string>>;
+}) {
   const queryClient = new QueryClient();
   const awaitedSearchParams = await searchParams;
 
