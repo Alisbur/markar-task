@@ -11,6 +11,7 @@ type IPropsCarCard = {
   isLiked?: boolean;
   onLikeClick?: (e: MouseEvent, id: number) => void;
   onCardClick: (id: number) => void;
+  onDetailsClick: (id: number) => void;
 } & HTMLAttributes<HTMLDivElement>;
 
 export const CarCard: FC<IPropsCarCard> = ({
@@ -18,6 +19,7 @@ export const CarCard: FC<IPropsCarCard> = ({
   className,
   onCardClick,
   onLikeClick,
+  onDetailsClick,
   ...props
 }) => {
   const [isLiked, setIsLiked] = useState(false);
@@ -51,13 +53,22 @@ export const CarCard: FC<IPropsCarCard> = ({
       <div className={'w-full mt-auto px-2 flex items-center justify-between'}>
         <Button
           variant={'outline'}
-          onClick={() => {
+          onClick={(e: MouseEvent) => {
+            e.preventDefault();
             setIsLiked(!isLiked);
           }}
         >
           <HeartIcon fill={isLiked ? 'red' : 'transparent'} color={'red'} />
         </Button>
-        <Button variant={'outline'}>Подробнее</Button>
+        <Button
+          variant={'outline'}
+          onClick={(e: MouseEvent) => {
+            e.preventDefault();
+            onDetailsClick(car.id);
+          }}
+        >
+          Подробнее
+        </Button>
       </div>
     </article>
   );

@@ -44,7 +44,11 @@ export default function HomePage({
   }, [newSearchString]);
 
   const handleCardClick = useCallback((id: number) => {
-    console.log('Card', id, 'isCLicked');
+    console.log('Card', id, 'is cLicked');
+  }, []);
+
+  const handleDetailsClick = useCallback((id: number) => {
+    console.log('Card', id, 'details is cLicked');
   }, []);
 
   if (isLoading) return <div>Loading...</div>;
@@ -61,7 +65,12 @@ export default function HomePage({
         >
           {carsData.length && !isLoading
             ? carsData.map((car) => (
-                <CarCard key={car.id} carData={car} onCardClick={handleCardClick} />
+                <CarCard
+                  key={car.id}
+                  carData={car}
+                  onCardClick={handleCardClick}
+                  onDetailsClick={handleDetailsClick}
+                />
               ))
             : new Array(12).fill('').map((_, i) => <CarCardSkeleton key={i} />)}
         </div>
