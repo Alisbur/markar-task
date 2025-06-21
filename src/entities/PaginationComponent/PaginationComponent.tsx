@@ -1,6 +1,5 @@
 import { FC, HTMLAttributes } from 'react';
 import { cn } from '@/shared/lib/cn';
-import { ArrowLeftIcon, ArrowRightIcon } from 'lucide-react';
 import { Button } from '@/shared/ui/Button';
 
 type TPaginationComponentProps = {
@@ -24,48 +23,48 @@ export const PaginationComponent: FC<TPaginationComponentProps> = ({
   if (currentPage === null || totalPages === null) return <></>;
 
   return (
-    <div className={cn(`flex items-center gap-3`, props.className)} {...props}>
+    <div className={cn(`flex items-center flex-wrap gap-3`, props.className)} {...props}>
       {currentPage > 1 && (
-        <Button variant={'ghost'} onClick={goToPrevPage}>
-          <ArrowLeftIcon />
+        <Button variant={'ghost'} className={`p-3`} onClick={goToPrevPage}>
+          {`<`}
         </Button>
       )}
 
       {currentPage > 1 && (
-        <Button variant={'ghost'} onClick={goToFirstPage}>
+        <Button variant={'ghost'} className={`p-3`} onClick={goToFirstPage}>
           1
         </Button>
       )}
 
       {currentPage > 3 && <span className={'text-m'}>...</span>}
 
-      {currentPage > 2 && (
-        <Button variant={'ghost'} onClick={goToPrevPage}>
+      {currentPage > 3 && (
+        <Button variant={'ghost'} className={`p-3`} onClick={goToPrevPage}>
           {currentPage - 1}
         </Button>
       )}
 
-      <Button variant={'ghost'} disabled className={`border border-[#555]`}>
+      <Button variant={'ghost'} disabled className={` p-3 border border-[#555]`}>
         {currentPage}
       </Button>
 
-      {currentPage <= totalPages - 2 && (
-        <Button variant={'ghost'} onClick={goToNextPage}>
+      {currentPage <= totalPages - 3 && (
+        <Button variant={'ghost'} className={`p-3`} onClick={goToNextPage}>
           {currentPage + 1}
         </Button>
       )}
 
-      {currentPage < totalPages - 2 && <span className={'text-m'}>...</span>}
+      {currentPage < totalPages - 3 && <span className={'text-m'}>...</span>}
 
       {currentPage <= totalPages - 1 && (
-        <Button variant={'ghost'} onClick={() => goToLastPage()}>
+        <Button variant={'ghost'} className={`p-3`} onClick={() => goToLastPage()}>
           {totalPages}
         </Button>
       )}
 
       {currentPage <= totalPages - 1 && (
-        <Button variant={'ghost'} onClick={goToNextPage}>
-          <ArrowRightIcon />
+        <Button variant={'ghost'} className={`p-3`} onClick={goToNextPage}>
+          {`>`}
         </Button>
       )}
     </div>

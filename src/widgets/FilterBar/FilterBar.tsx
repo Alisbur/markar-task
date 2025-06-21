@@ -24,9 +24,16 @@ export const FilterBar: FC<TFilterBarProps> = ({ className }) => {
   }, [filter, sort]);
 
   return (
-    <nav className={cn(`w-full flex items-center justify-between`, className)}>
+    <nav
+      className={cn(
+        `w-full flex flex-col gap-y-4 lg:flex-row items-center justify-between`,
+        className
+      )}
+    >
       <div
-        className={`grid grid-rows md:grid-cols-[min-content_200px_200px] items-center gap-x-8 gap-y-2`}
+        className={`
+          w-full grid grid-cols-1 md:grid-cols-[min-content_1fr_1fr]
+          lg:grid-cols-[min-content_200px_200px]  items-center gap-x-8 gap-y-4`}
       >
         <span className={`text-m font-semibold`}>Фильтр:</span>
         <Select
@@ -58,6 +65,7 @@ export const FilterBar: FC<TFilterBarProps> = ({ className }) => {
         onClick={() => {
           setFilter({ filter: selectedFilter, sort: selectedSort });
         }}
+        className={`max-lg:w-full`}
       >
         Применить фильтры
       </Button>

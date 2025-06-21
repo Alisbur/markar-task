@@ -86,7 +86,8 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       <Comp
         className={cn(
           'relative flex items-center justify-center',
-          buttonVariants({ variant, size, className, addon, textColor, textSize })
+          buttonVariants({ variant, size, addon, textColor, textSize }),
+          className
         )}
         ref={ref}
         disabled={isLoading || props.disabled}

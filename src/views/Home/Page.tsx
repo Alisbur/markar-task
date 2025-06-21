@@ -74,9 +74,7 @@ export default function HomePage({
               ))
             : new Array(12).fill('').map((_, i) => <CarCardSkeleton key={i} />)}
         </div>
-        <div
-          className={`flex items-center justify-center w-full h-[100px] border border-red mb-[100px]`}
-        >
+        <div className={`flex items-center justify-center w-full border border-red mb-[100px]`}>
           <PaginationBar />
         </div>
       </main>

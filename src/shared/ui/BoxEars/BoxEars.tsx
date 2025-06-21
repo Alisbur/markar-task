@@ -13,7 +13,7 @@ const BoxEars = React.forwardRef<HTMLDivElement, IBoxEars>(
     return (
       <Comp
         className={cn(
-          'mx-[100px]  max-xl:mx-[60px] max-lg:mx-[40px] max-md:mx-[30px] max-sm:mx-[20px]',
+          'mx-[100px]  max-xl:mx-[60px] max-lg:mx-[40px] max-md:mx-[30px] max-sm:mx-[16px]',
           className
         )}
         ref={ref}
