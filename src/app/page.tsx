@@ -37,7 +37,7 @@ export default async function Home({
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
       {/* <Suspense fallback={<p>Loading!!!</p>}> */}
-        <HomePage searchParams={awaitedSearchParams} />
+      <HomePage searchParams={awaitedSearchParams} />
       {/* </Suspense> */}
     </HydrationBoundary>
   );
