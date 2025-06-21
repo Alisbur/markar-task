@@ -23,6 +23,9 @@ export const useSearchString = () => {
 
     const page: string | null = searchParams.get('_page');
     const limit: string | null = searchParams.get('_limit');
+
+    if (!page) 
+      filters.setFilter({ filter, sort });
   }, []);
 
   useEffect(() => {

@@ -1,4 +1,4 @@
-import { PaginationComponent } from '@/entities/Pagination/PaginationComponent';
+import { PaginationComponent } from '@/entities/PaginationComponent/PaginationComponent';
 import { usePagination } from '@/features/Pagination';
 import { cn } from '@/shared/lib/cn';
 import { Select } from '@/shared/ui/Select';
